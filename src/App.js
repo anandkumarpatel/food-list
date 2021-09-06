@@ -42,6 +42,11 @@ class App extends Component {
       if (response.data.err) {
         return console.log("ERROR", response.data.err)
       }
+      response.data.ingredients.forEach((i) => {
+        if (i.measure.name[i.measure.name.length -1] === 's') {
+          i.measure.name = i.measure.name.substring(0, i.measure.name.length - 1);
+        }
+      })
       const list = {...this.state.list}
       list[targetUrl] = {
         ingredients: response.data.ingredients
